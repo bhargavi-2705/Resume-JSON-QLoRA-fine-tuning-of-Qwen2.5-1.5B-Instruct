@@ -1,0 +1,24 @@
+{
+  "n_clean_real": 22,
+  "fine_tuned": {
+    "f_name": NaN,
+    "f_email": NaN,
+    "f_skills": 0.9726,
+    "f_education": 0.8788,
+    "f_experience": 0.9545,
+    "field_mean": 0.9353
+  },
+  "zero_shot": {
+    "set": "zero-shot | clean real",
+    "n": 22.0,
+    "json_valid": 1.0,
+    "schema_valid": 0.45454545454545453,
+    "f_name": NaN,
+    "f_email": NaN,
+    "f_skills": 0.7966154681829739,
+    "f_education": 0.6893939393939394,
+    "f_experience": 0.893939393939394,
+    "field_mean": 0.7933162671721025,
+    "sec_per_sample": 5.175459688360041
+  }
+}

@@ -1,0 +1,41 @@
+[
+  {
+    "set": "zero-shot | seen formats",
+    "n": 100,
+    "json_valid": 0.96,
+    "schema_valid": 0.2,
+    "f_name": 0.9072164948453608,
+    "f_email": 0.9270833333333334,
+    "f_skills": 0.46330596845534927,
+    "f_education": 0.56,
+    "f_experience": 0.705,
+    "field_mean": 0.7084560654859415,
+    "sec_per_sample": 6.602554523944855
+  },
+  {
+    "set": "zero-shot | unseen format",
+    "n": 98,
+    "json_valid": 0.8571428571428571,
+    "schema_valid": 0.01020408163265306,
+    "f_name": 0.8526315789473684,
+    "f_email": 0.8404255319148937,
+    "f_skills": 0.5444156883532633,
+    "f_education": 0.47108843537414963,
+    "f_experience": 0.7959183673469388,
+    "field_mean": 0.7004899435631728,
+    "sec_per_sample": 6.507263061951618
+  },
+  {
+    "set": "zero-shot | real records",
+    "n": 40,
+    "json_valid": 1.0,
+    "schema_valid": 0.55,
+    "f_name": NaN,
+    "f_email": NaN,
+    "f_skills": 0.8101509395130677,
+    "f_education": 0.6916666666666667,
+    "f_experience": 0.9116666666666667,
+    "field_mean": 0.804494757615467,
+    "sec_per_sample": 3.6201902866363525
+  }
+]
