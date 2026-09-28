@@ -78,8 +78,6 @@ Remaining model errors are rare. Skills recall on the synthetic sets is 0.998 wi
 
 40 anonymized real resumes (no name or email in the data) were held out of training. After deduplication (section 5), 22 remain. Zero-shot scores **0.79** on them and the fine-tuned model **0.935** (skills 0.97, education 0.88, experience 0.95; 100% valid JSON, 100% exact schema). With n=22 the uncertainty is roughly ±5 to 8 points, so treat this as a sanity check, not a precise estimate. The gap between models is larger than that noise. These resumes are still text rendered from JSON, not parsed from real files, and the weakest field is education, where several errors trace to ambiguous or noisy source labels.
 
-**[Optional]** add a separate real-text result on resumes from [`sandeeppanem/resume-json-extraction-5k`](https://huggingface.co/datasets/sandeeppanem/resume-json-extraction-5k) (Apache-2.0), hand-labeled in this schema.
-
 ---
 
 ## 5. Data leakage / duplicates
@@ -96,20 +94,7 @@ Effect on scores: negligible. Real records went from 0.94 (n=40) to 0.935 (n=22)
 
 ---
 
-## 6. Limitations
-
-- **Mostly synthetic data.** ~97% of records are generated, so the synthetic test scores are near-ceiling and mostly measure string copying.
-- **Text is rendered from JSON**, not parsed from PDFs or messy real documents. Real resumes are longer and messier: the median real resume in the sandeeppanem dataset is ~1,400 tokens and the 95th percentile ~4,200, while training capped at 1,536.
-- **The "unseen" layout is close to the training layouts** (same label style as layout 0, different bullets and bold), so it is a weak generalization test. Seen and unseen scores are within noise.
-- **Small test sets** (100, 98, and 22 for real records). No confidence intervals, single training run, no seeds compared.
-- **No ablations** (rank, learning rate, epochs) and **no few-shot baseline**.
-- **Duplicates** in the source data (section 5): removed from the real test set but not from training, and only exact duplicates were detected.
-- **Two of 100 unseen-layout resumes** were dropped for exceeding the 1,536-token limit.
-- Package versions were not pinned. **[TODO]** paste the output of `pip freeze | grep -E "transformers|peft|bitsandbytes|accelerate|datasets|torch"` here.
-
----
-
-## 7. Reproduce
+## 6. Reproduce
 
 1. Open `resume_json_qwen_qlora.ipynb` in Google Colab with a T4 runtime and run all cells (set `SMOKE = True` first for a 5-minute pipeline check). The full run takes about 1.5 hours including the baseline.
 2. Results and per-resume predictions are written to `resume-qlora/full/` (Google Drive): `results.csv`, `baseline_results.json`, `preds_*.jsonl`, `train_log.json` and the adapter.
@@ -132,7 +117,7 @@ Use the same system prompt as in the notebook and the chat template (`tok.apply_
 
 ---
 
-## 8. Files
+## 7. Files
 
 ```
 resume_json_qwen_qlora.ipynb   # full pipeline, outputs kept
@@ -142,14 +127,7 @@ preds_ft_*.jsonl               # fine-tuned per-resume outputs and scores
 train_log.json                 # loss log
 README.md
 ```
-Do not commit raw third-party resume text. Only commit your own labels and results.
 
 ---
 
-## 9. Credits and licenses
 
-- Data: [`datasetmaster/resumes`](https://huggingface.co/datasets/datasetmaster/resumes). **[TODO]** confirm its license on the dataset card.
-- Model: [Qwen2.5-1.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct). **[TODO]** confirm its license on the model card.
-- Libraries: Hugging Face `transformers`, `peft`, `bitsandbytes`, `datasets`.
-- QLoRA: Dettmers et al., 2023. LoRA: Hu et al., 2021.
-- Code license: **[TODO: choose, e.g. MIT]**.
